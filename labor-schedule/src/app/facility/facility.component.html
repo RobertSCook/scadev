@@ -1,0 +1,8 @@
+<label>
+  Select Facility: {{selectedFacility.facilityName}}
+</label>
+<div>
+  <select class="form-control" [(ngModel)]="selectedFacility" sel1>
+    <option *ngFor="let fac of facilities" [ngValue]="fac">{{fac.facilityId}} - {{fac.facilityName}}</option>
+  </select>
+</div>
