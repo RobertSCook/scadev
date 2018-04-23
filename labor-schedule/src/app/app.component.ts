@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sca';
+  errorMsg: string; // TODO: Need to bubble up errors to this level...maybe?
 }

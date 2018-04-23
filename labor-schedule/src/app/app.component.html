@@ -14,8 +14,12 @@
     <!--TODO: Need to figure out how to add in the right aligned help menu-->
   </div>
 </nav>
+<div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+  {{errorMsg}}
+</div>
 <div>
   <form class="form-horizontal">
       <sca-facility></sca-facility>
+      <label>Week Start Date: </label>
   </form>
 </div>
