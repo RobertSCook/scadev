@@ -10,13 +10,15 @@ import { AppComponent } from './app.component';
 import { FacilityComponent } from './facility/facility.component';
 import { LaborListComponent } from './labor-list/labor-list.component';
 import { DataService } from './data.service';
+import { WeekPickerComponent } from './week-picker/week-picker.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     FacilityComponent,
-    LaborListComponent
+    LaborListComponent,
+    WeekPickerComponent
   ],
   imports: [
     BrowserModule,
