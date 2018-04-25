@@ -1,0 +1,30 @@
+<div *ngIf="scheduleList">
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Teammate</th>
+        <th scope="col">Employee Type</th>
+        <th scope="col">Monday</th>
+        <th scope="col">Tuesday</th>
+        <th scope="col">Wednesday</th>
+        <th scope="col">Thursday</th>
+        <th scope="col">Friday</th>
+        <th scope="col">Saturday</th>
+        <th scope="col">Sunday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sched of scheduleList">
+        <td>{{sched.teammateName}}</td>
+        <td>{{sched.teammateType}}</td>
+        <td>{{sched.monday}}</td>
+        <td>{{sched.tuesday}}</td>
+        <td>{{sched.wednesday}}</td>
+        <td>{{sched.thursday}}</td>
+        <td>{{sched.friday}}</td>
+        <td>{{sched.saturday}}</td>
+        <td>{{sched.sunday}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

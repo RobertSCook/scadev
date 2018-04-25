@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import {NgbDatepickerConfig, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -7,7 +7,8 @@ import {NgbDatepickerConfig, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./week-picker.component.css']
 })
 export class WeekPickerComponent {
-  model;
+  weekSelected: NgbDateStruct;
+  @Output() selected = new EventEmitter<Date>();
 
   constructor(config: NgbDatepickerConfig) {
         // customize default values of datepickers used by this component tree
@@ -23,5 +24,11 @@ export class WeekPickerComponent {
           const d = new Date(date.year, date.month - 1, date.day);
           return d.getDay() !== 1;
         };
+   }
+
+   weekChange() {
+     const stringDate = new Date(`${this.weekSelected.year}-${this.weekSelected.month}-${this.weekSelected.day}`);
+     console.log(`About to emit ${stringDate}`);
+     this.selected.emit(stringDate);
    }
 }

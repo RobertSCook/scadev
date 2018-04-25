@@ -8,17 +8,17 @@ import { SelectModule } from 'ng2-select';
 
 import { AppComponent } from './app.component';
 import { FacilityComponent } from './facility/facility.component';
-import { LaborListComponent } from './labor-list/labor-list.component';
 import { DataService } from './data.service';
 import { WeekPickerComponent } from './week-picker/week-picker.component';
+import { ScheduleListComponent } from './schedule-list/schedule-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     FacilityComponent,
-    LaborListComponent,
-    WeekPickerComponent
+    WeekPickerComponent,
+    ScheduleListComponent
   ],
   imports: [
     BrowserModule,

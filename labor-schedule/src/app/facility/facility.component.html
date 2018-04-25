@@ -3,7 +3,7 @@
     Select Facility:
   </label>
   <div>
-    <select class="form-control" [(ngModel)]="selectedFacility" sel1>
+    <select class="form-control" [(ngModel)]="selectedFacility" sel1 (change)="facilitySelected()">
       <option *ngFor="let fac of facilities" [ngValue]="fac">{{fac.facilityId}} - {{fac.facilityName}}</option>
     </select>
   </div>

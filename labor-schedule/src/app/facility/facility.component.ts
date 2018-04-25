@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Facility } from '../models/facility';
 import { FacilityResponse } from '../models/facility-response';
@@ -13,6 +13,7 @@ import { DataService } from '../data.service';
 export class FacilityComponent implements OnInit {
   facilities: Facility[];
   selectedFacility: Facility;
+  @Output() selected = new EventEmitter<Facility>();
 
   constructor(private dataService: DataService) { }
 
@@ -27,6 +28,11 @@ export class FacilityComponent implements OnInit {
       alert(errorMsg); // TODO: Change this to a toaster or something
     }
   );
+  }
+
+  facilitySelected() {
+    console.log(`About to emit ${this.selectedFacility.facilityId}`);
+    this.selected.emit(this.selectedFacility);
   }
 
 }

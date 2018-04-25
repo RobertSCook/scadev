@@ -9,6 +9,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
+import { TeammateScheduleResponse } from './models/teammate-schedule-response';
 
 
 @Injectable()
@@ -33,10 +34,13 @@ export class DataService {
   }
 
   // TODO: Get better logging for errors
-  getTeammateSchedule(facilityId: string, day: string): Observable<TeammateSchedule[]> {
-    return this.http.get<TeammateSchedule[]>(this.teammateScheduleUrl)
+  getTeammateSchedule(facilityId: string, day: string): Observable<TeammateScheduleResponse> {
+  //  const serviceParams = new HttpParams()
+  //                .set('facilityId', facilityId)
+  //                .set('day', day);
+    return this.http.get<TeammateScheduleResponse>(`${this.teammateScheduleUrl}/${facilityId}/${day}`)
       .do((teams) => {
-        console.log(`Got ${teams.length} teammate schedules`);
+        console.log(`Got ${teams.data.length} teammate schedules`);
       })
       .catch((error: any) => {
         console.log(`Error occured in getTeammateSchedule: ${error}`);
