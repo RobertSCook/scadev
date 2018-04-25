@@ -10,12 +10,13 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import { TeammateScheduleResponse } from './models/teammate-schedule-response';
+import { environment } from '../environments/environment';
 
 
 @Injectable()
 export class DataService {
-  private locationsUrl = 'http://scadevjobs.com/api/locations';
-  private teammateScheduleUrl = 'http://scadevjobs.com/api/Schedules';
+  private locationsUrl = environment.locationsUrl;
+  private teammateScheduleUrl = environment.teammateScheduleUrl;
 
   constructor(
     private http: HttpClient

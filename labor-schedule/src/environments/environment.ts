@@ -4,5 +4,8 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  locationsUrl: 'http://scadevjobs.com/api/locations',
+  teammateScheduleUrl: 'http://scadevjobs.com/api/Schedules'
+
 };
