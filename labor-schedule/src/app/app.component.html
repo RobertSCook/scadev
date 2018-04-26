@@ -14,15 +14,17 @@
     <!--TODO: Need to figure out how to add in the right aligned help menu-->
   </div>
 </nav>
-<div *ngIf="errorMsg" class="alert alert-danger" role="alert">
-  {{errorMsg}}
-</div>
-<div>
-  <form class="form-horizontal">
-      <sca-facility (selected)="facilitySelect($event)"></sca-facility>
-      <sca-week-picker (selected)="weekSelect($event)"></sca-week-picker>
-      <button type="button" class="btn btn-primary" (click)="submit()">Get Schedule</button>
-  </form>
-  <sca-schedule-list></sca-schedule-list>
+<div class="container">
+  <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+    {{errorMsg}}
+  </div>
+  <div>
+    <form class="form-horizontal">
+        <sca-facility (selected)="facilitySelect($event)"></sca-facility>
+        <sca-week-picker (selected)="weekSelect($event)"></sca-week-picker>
+        <button type="button" class="btn btn-primary" (click)="submit()">Get Schedule</button><br/><br/>
+    </form>
+    <sca-schedule-list [listCriteria]="criteria"></sca-schedule-list>
 
+  </div>
 </div>

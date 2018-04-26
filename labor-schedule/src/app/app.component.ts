@@ -1,7 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { TeammateSchedule } from './models/teammate-schedule';
 import { Facility } from './models/facility';
+import { ListCriteria } from './models/list-criteria';
 import { ScheduleListComponent } from './schedule-list/schedule-list.component';
 
 @Component({
@@ -17,8 +18,7 @@ export class AppComponent {
   schedule: TeammateSchedule[];
   week: Date;
   facility: Facility;
-
-  @ViewChild(ScheduleListComponent) scheduleList: ScheduleListComponent;
+  criteria: ListCriteria;
 
   getSchedule() {
     console.log('getSchedule fired');
@@ -35,6 +35,6 @@ export class AppComponent {
   }
 
   submit() {
-    this.scheduleList.getTeammateScheduleList(this.facility, this.week);
+    this.criteria = { weekStart: this.week, facility: this.facility};
   }
 }

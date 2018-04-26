@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import * as moment from 'moment';
 import { environment } from '../../environments/environment';
 
@@ -7,21 +7,30 @@ import { DataService } from '../data.service';
 import { Facility } from '../models/facility';
 import { TeammateScheduleResponse } from '../models/teammate-schedule-response';
 import { ScheduleHeaders } from '../models/schedule-headers';
+import { ListCriteria } from '../models/list-criteria';
 
 @Component({
   selector: 'sca-schedule-list',
   templateUrl: './schedule-list.component.html',
   styleUrls: ['./schedule-list.component.css']
 })
-export class ScheduleListComponent implements OnInit {
+export class ScheduleListComponent implements OnInit, OnChanges {
+
   scheduleList: TeammateSchedule[];
   columnHeaders: ScheduleHeaders[];
   stringWeek: string;
   loadingList = false;
+  @Input() listCriteria: ListCriteria;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.listCriteria) {
+      this.getTeammateScheduleList(this.listCriteria.facility, this.listCriteria.weekStart);
+    }
   }
 
   getTeammateScheduleList(facility: Facility, weekStart: Date) {
@@ -34,7 +43,6 @@ export class ScheduleListComponent implements OnInit {
       alert(errorMsg); // TODO: Change this to a toaster or something
     });
 
-
     this.loadingList = false;
   }
 
@@ -43,14 +51,13 @@ export class ScheduleListComponent implements OnInit {
 
     for (const a of schedule) {
       // There has to be a better way to do this, I don't like it
-      // TODO: Deal with casing
-      if (columnName === 'Monday' && a.monday === 'OFF') { numOff++; }
-      if (columnName === 'Tuesday' && a.tuesday === 'OFF') { numOff++; }
-      if (columnName === 'Wednesday' && a.wednesday === 'OFF') {numOff++; }
-      if (columnName === 'Thursday' && a.thursday === 'OFF') { numOff++; }
-      if (columnName === 'Friday' && a.friday === 'OFF') { numOff++; }
-      if (columnName === 'Saturday' && a.saturday === 'OFF') { numOff++; }
-      if (columnName === 'Sunday' && a.sunday === 'OFF') { numOff++; }
+      if (columnName.toUpperCase() === 'MONDAY' && a.monday.toUpperCase() === 'OFF') { numOff++; }
+      if (columnName.toUpperCase() === 'TUESDAY' && a.tuesday.toUpperCase() === 'OFF') { numOff++; }
+      if (columnName.toUpperCase() === 'WEDNESDAY' && a.wednesday.toUpperCase() === 'OFF') {numOff++; }
+      if (columnName.toUpperCase() === 'THURSDAY' && a.thursday.toUpperCase() === 'OFF') { numOff++; }
+      if (columnName.toUpperCase() === 'FRIDAY' && a.friday.toUpperCase() === 'OFF') { numOff++; }
+      if (columnName.toUpperCase() === 'SATURDAY' && a.saturday.toUpperCase() === 'OFF') { numOff++; }
+      if (columnName.toUpperCase() === 'SUNDAY' && a.sunday.toUpperCase() === 'OFF') { numOff++; }
     }
 
     return (numOff >= 2);
@@ -77,8 +84,7 @@ export class ScheduleListComponent implements OnInit {
   initializeHeaders(headerString: string): ScheduleHeaders[] {
     const columns = new Array<ScheduleHeaders>();
 
-    // tslint does not like this, but switching to single quote doesnt work. need to figure that out
-    const headers: string[] = headerString.split(",");
+    const headers: string[] = headerString.split(',');
     for (const h of headers) {
       const col = new ScheduleHeaders();
       col.columnText = h;
