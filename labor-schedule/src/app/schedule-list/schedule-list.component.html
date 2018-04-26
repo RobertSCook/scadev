@@ -2,7 +2,7 @@
   Reloading the data...
 </div>
 <div *ngIf="scheduleList && !loadingList">
-  <table class="table">
+  <table class="table table-striped custab">
     <colgroup>
       <col *ngFor="let cols of columnHeaders" [ngClass]="{'bg-danger':cols.isColumnError}">
     </colgroup>
