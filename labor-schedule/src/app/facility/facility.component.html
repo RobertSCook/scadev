@@ -3,8 +3,21 @@
     Select Facility:
   </label>
   <div>
-    <select class="form-control" [(ngModel)]="selectedFacility" sel1 (change)="facilitySelected()">
+    <!--<select class="form-control" [(ngModel)]="selectedFacility" sel1 (change)="facilitySelected()">
       <option *ngFor="let fac of facilities" [ngValue]="fac">{{fac.facilityId}} - {{fac.facilityName}}</option>
-    </select>
+    </select>//-->
+  </div>
+  <div>
+      <input
+      id="typeahead-focus"
+      type="text"
+      class="form-control"
+      [(ngModel)]="selectedFacilityTerm"
+      [ngbTypeahead]="search"
+      (focus)="focus$.next($event.target.value)"
+      (click)="click$.next($event.target.value)"
+      (selectItem)="facilitySelected($event)"
+      #instance="ngbTypeahead"
+    />
   </div>
 </div>

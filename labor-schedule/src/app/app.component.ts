@@ -25,12 +25,10 @@ export class AppComponent {
   }
 
   facilitySelect(selectedFacility: Facility) {
-    console.log(`The facility ${selectedFacility.facilityName} was selected`);
     this.facility = selectedFacility;
   }
 
   weekSelect(selectedWeek: Date) {
-    console.log(`The selected week is ${selectedWeek.getDay()}`);
     this.week = selectedWeek;
   }
 

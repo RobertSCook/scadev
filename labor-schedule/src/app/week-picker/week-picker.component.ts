@@ -28,7 +28,6 @@ export class WeekPickerComponent {
 
    weekChange() {
      const stringDate = new Date(`${this.weekSelected.year}-${this.weekSelected.month}-${this.weekSelected.day}`);
-     console.log(`About to emit ${stringDate}`);
      this.selected.emit(stringDate);
    }
 }
